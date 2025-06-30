@@ -20,7 +20,7 @@ jobs:
         run: pip install platformio
       # Step 3: Build the firmware using PlatformIO
       - name: Build Firmware for ESP32
-        run: platformio run -e esp32dev # Use the esp32dev environment from platformio.ini
+        run: platformio run -e esp32-dev # Use the esp32dev environment from platformio.ini
       # Step 4: Upload the firmware as an artifact
       - name: Upload Firmware
         uses: actions/upload-artifact@v4
