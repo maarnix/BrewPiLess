@@ -26,4 +26,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: firmware # Artifact name
-          path: .pio/build/esp32dev/*.bin # Path for the compiled firmware file
+          path: .pio/build/esp32-dev/*.bin # Path for the compiled firmware file
