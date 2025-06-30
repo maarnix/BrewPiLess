@@ -1,0 +1,29 @@
+name: Build BrewPiLess Firmware for ESP32
+on:
+  workflow_dispatch: # Allows manual triggering of the workflow
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Check out the BrewPiLess repository from the original source
+      - name: Check out BrewPiLess source
+        uses: actions/checkout@v4
+        with:
+          repository: vitotai/BrewPiLess # Pull from the original repository
+          ref: master # Use the master branch (update if the branch is different)
+      # Step 2: Set up Python and install PlatformIO
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install PlatformIO
+        run: pip install platformio
+      # Step 3: Build the firmware using PlatformIO
+      - name: Build Firmware for ESP32
+        run: platformio run -e esp32dev # Use the esp32dev environment from platformio.ini
+      # Step 4: Upload the firmware as an artifact
+      - name: Upload Firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware # Artifact name
+          path: .pio/build/esp32dev/*.bin # Path for the compiled firmware file
